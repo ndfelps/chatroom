@@ -1,5 +1,6 @@
 html {
 	height: 100%;
+	font-family: sans-serif;
 }
 body {
 	height:100%;
@@ -8,41 +9,39 @@ body {
 	border: 1px solid transparent;
 }
 header {
-	background-color: black;
+	background-color: rgb(39, 70, 100);
 	color: white;
-	font-family: sans-serif;
 	padding: 3%;
 	text-align: center;
+	overflow: hidden;
 }
 #side {
-	/*display: inline-block;*/
 	height: 90%;
-	background-color: darkgrey;
-	width: 15%;
-	display: table;
+	background-color: rgb(100, 100, 100);
+	width: 20%;	
+	float: left;
 }
-#chatArea {
-	float: right;
-	width: 85%;
-	height: 90%
+#username{
+
 }
 #message {
-	width: 65%;
+	width: 70%;
 }
-#chat {
+.box {
 	border-style: solid;
-	height: 90%;
+	border-width: 1px;
+	border-top: none;
+	height: 550px;
+	overflow: scroll;
 }
 a {
 	text-decoration: none;
 	text-align: center;
-	vertical-align: center;
 	width: 75%;
-	color: black;
+	color: white;
 	background-color: white;
-	border: 2px solid black;
 	margin-top: 20px;
 }
-#con {
-	display: table-cell;
+.con {
+	padding: 15px;
 }
