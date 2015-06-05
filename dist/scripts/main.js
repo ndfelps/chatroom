@@ -141,7 +141,7 @@ function start() {
 				}
 
 				$.post(
-					'https://morning-reef-8611.herokuapp.com/trainers/create',
+					'https://morning-reef-8611.herokuapp.com/trainers',
 					myMessage
 				);
 				$('#message').val('');
@@ -161,7 +161,7 @@ function start() {
 					}
 
 					$.post(
-						'https://morning-reef-8611.herokuapp.com/trainers/create',
+						'https://morning-reef-8611.herokuapp.com/trainers',
 						myMessage
 					);
 					$('#message').val('');

@@ -41,6 +41,13 @@ a {
 	color: white;
 	margin-top: 20px;
 }
+#leadDrop {
+	text-decoration: none;
+	text-align: center;
+	color: white;
+	margin-top: 20px;
+	margin-left: 50px;
+}
 .con {
 	padding: 15px;
 }
@@ -52,9 +59,6 @@ a {
 }
 #sett {
 	margin-left: 80px;
-}
-#lead {
-	margin-left: 50px;
 }
 .active {
 	background-color: black;
