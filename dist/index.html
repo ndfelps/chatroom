@@ -2,48 +2,49 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<title></title>
+	<title>Chat Room</title>
 </head>
 <body>
 	<header>
-		This is a chat room
+		<a href = '#login' class = "topNav">Login</a>
+		<a href = '#lead' class = "topNav" id = "lead">Leaderboard</a>
+		<a href = '#settings' class = "topNav" id = "sett">Settings</a>
+		<div>This is a chat room</div>
 	</header>
 	<section id = 'side'>
-		<a href = "#chat1"><div class = 'con'><nav class = 'chLabel'>Chat Room #1</nav></div></a>
-		<a href = "#chat2"><div class = 'con'><nav class = 'chLabel'>Chat Room #2</nav></div></a>
-		<a href = "#chat3"><div class = 'con'><nav class = 'chLabel'>Chat Room #3</nav></div></a>
-		<a href = "#chat4"><div class = 'con'><nav class = 'chLabel'>Chat Room #4</nav></div></a>
+		<a href = "#1"><div class = 'con' id = 'ch1'><nav class = 'chLabel'>Chat Room #1</nav></div></a>
+		<a href = "#2"><div class = 'con' id = 'ch2'><nav class = 'chLabel'>Chat Room #2</nav></div></a>
+		<a href = "#3"><div class = 'con' id = 'ch3'><nav class = 'chLabel'>Chat Room #3</nav></div></a>
+		<a href = "#4"><div class = 'con' id = 'ch4'><nav class = 'chLabel'>Chat Room #4</nav></div></a>
 	</section>
 
-	<!-- <section id = 'welcome' class = 'page'>
-		Welcome to our chat program!
-	</section> -->
+	<section id = "loginPage" class = 'page'>
+		<div class = 'box' id = 'loginArea'>
+			<input type = 'text' id = 'loginBox' placeholder = 'Username'>
+			<button class = 'btn-danger' id = 'signIn'>Log In</button>
+		</div>
+		<button class = 'btn-danger' id = 'signOut'>Log Out</button>
+	</section>
 	<section id = "chatArea1" class = 'page'>
-		<div class="box" id = "chat1"></div>
-		<!-- <input type="text" id = "username" placeholder = "Username">
-		<input type="text" id = "message" placeholder = "Message">
-		<button class = "btn">Submit</button> -->
+		<div class="box" id = "1"></div>
 	</section>
 	<section id = "chatArea2" class = 'page'>
-		<div class="box" id = "chat2"></div>
-		<!-- <input type="text" id = "username" placeholder = "Username">
-		<input type="text" id = "message" placeholder = "Message">
-		<button class = "btn">Submit</button> -->
+		<div class="box" id = "2"></div>
 	</section>
 	<section id = "chatArea3" class = 'page'>
-		<div class="box" id = "chat3"></div>
-	<!-- 	<input type="text" id = "username" placeholder = "Username">
-		<input type="text" id = "message" placeholder = "Message">
-		<button class = "btn">Submit</button> -->
+		<div class="box" id = "3"></div>
 	</section>
 	<section id = "chatArea4" class = 'page'>
-		<div class="box" id = "chat4"></div>
-		<!-- <input type="text" id = "username" placeholder = "Username">
-		<input type="text" id = "message" placeholder = "Message">
-		<button class = "btn">Submit</button> -->
+		<div class="box" id = "4"></div>
+	</section>
+	<section id = "leaderboard" class = 'page'>
+		<div class="box" id = "leaders"></div>
+	</section>
+	<section id = "settings" class = 'page'>
+		<div id = "setti">Get outta here</div>
 	</section>
 	<input type="text" id = "message" placeholder = "Message">
-	<input type="text" id = "username" placeholder = "Username">
+	<!-- <input type="text" id = "username" placeholder = "Username"> -->
 	<button class = "btn">Submit</button>
 
 	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>

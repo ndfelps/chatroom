@@ -11,9 +11,9 @@ body {
 header {
 	background-color: rgb(39, 70, 100);
 	color: white;
-	padding: 3%;
 	text-align: center;
 	overflow: hidden;
+	padding-top: 1.5%
 }
 #side {
 	height: 90%;
@@ -39,9 +39,23 @@ a {
 	text-align: center;
 	width: 75%;
 	color: white;
-	background-color: white;
 	margin-top: 20px;
 }
 .con {
 	padding: 15px;
+}
+.topNav {
+	float: left;
+	background-color: transparent;
+	width: 0;
+	font-size: 10px;
+}
+#sett {
+	margin-left: 80px;
+}
+#lead {
+	margin-left: 50px;
+}
+.active {
+	background-color: black;
 }
