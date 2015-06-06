@@ -5,9 +5,16 @@
 	<title>Chat Room</title>
 </head>
 <body>
+	<div class = 'leaderDrop'>
+		<ul class = 'dropdown-menu'>
+			<li><a href = '#actUsers'>Most Active Users</a></li>
+			<li><a href = '#actChat'>Most Active Chat Rooms</a></li>
+			<li><a href = '#recent'>Recent Activity</a></li>
+		</ul>
+	</div>
 	<header>
 		<a href = '#login' class = "topNav">Login</a>
-		<span id = "leadDrop" class = "topNav">Leaderboard</span>
+		<div id = "leadDrop" class = "topNav">Leaderboard</div>
 		<a href = '#settings' class = "topNav" id = "sett">Settings</a>
 		<div>This is a chat room</div>
 	</header>
@@ -18,12 +25,13 @@
 		<a href = "#4"><div class = 'con' id = 'ch4'><nav class = 'chLabel'>Chat Room #4</nav></div></a>
 	</section>
 
+
 	<section id = "loginPage" class = 'page'>
 		<div class = 'box' id = 'loginArea'>
 			<input type = 'text' id = 'loginBox' placeholder = 'Username'>
 			<button class = 'btn-danger' id = 'signIn'>Log In</button>
 		</div>
-		<button class = 'btn-danger' id = 'signOut'>Log Out</button>
+		<div id = 'signoutBox'><button class = 'btn-danger' id = 'signOut'>Log Out</button></div>
 	</section>
 	<section id = "chatArea1" class = 'page'>
 		<div class="box" id = "1"></div>
@@ -37,8 +45,14 @@
 	<section id = "chatArea4" class = 'page'>
 		<div class="box" id = "4"></div>
 	</section>
-	<section id = "leaderboard" class = 'page'>
-		<div class="box" id = "leaders"></div>
+	<section id = "actUsers" class = 'page'>
+		<div class="box" id = "chatLeaders"></div>
+	</section>
+	<section id = "actChat" class = 'page'>
+		<div class="box" id = "roomLeaders"></div>
+	</section>
+	<section id = "recent" class = 'page'>
+		<div class="box" id = "mostRecent"></div>
 	</section>
 	<section id = "settings" class = 'page'>
 		<div id = "setti">Get outta here</div>

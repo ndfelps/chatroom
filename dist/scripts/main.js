@@ -1,6 +1,7 @@
 $(document).on('ready', start)
 
 function start() {
+// Router configuration
 	var routerConfig = {
 		routes: {
 			"": 'login',
@@ -9,8 +10,10 @@ function start() {
 			"2": "nav2",
 			"3": "nav3",
 			"4": "nav4",
-			"leaderboard": "nav5",
-			"settings": "nav6"
+			"actUsers": "nav5",
+			"settings": "nav6",
+			"actChat": "nav7",
+			"recent": "nav8"
 		},
 		login: function() {
 			$('.page').hide();
@@ -18,6 +21,7 @@ function start() {
 			$('#message').hide();
 			$('#username').hide();
 			$('.btn').hide();
+			$('#signOut').hide();
 			$('.con').removeClass('active');
 			if(user === '' || user === undefined) {
 				$('#loginArea').show();
@@ -64,12 +68,13 @@ function start() {
 			$('#ch4').addClass('active');
 		},
 		nav5: function() {
-			// $('.page').hide();
-			// $('#message').hide();
-			// $('#username').hide();
-			// $('.btn').hide();
-			// $('.con').removeClass('active');
-			// $('#leaderboard').show();
+			dropdownClose();
+			$('.page').hide();
+			$('#message').hide();
+			$('#username').hide();
+			$('.btn').hide();
+			$('.con').removeClass('active');
+			$('#actChat').show();
 		},
 		nav6: function() {
 			$('.page').hide();
@@ -78,13 +83,33 @@ function start() {
 			$('.btn').hide();
 			$('.con').removeClass('active');
 			$('#settings').show();
+		},
+		nav7: function() {
+			dropdownClose();
+			$('.page').hide();
+			$('#message').hide();
+			$('#username').hide();
+			$('.btn').hide();
+			$('.con').removeClass('active');
+			$('#actUsers').show();
+		},
+		nav7: function() {
+			dropdownClose();
+			$('.page').hide();
+			$('#message').hide();
+			$('#username').hide();
+			$('.btn').hide();
+			$('.con').removeClass('active');
+			$('#recent').show();
 		}
 	}
-
+//
+// Router intialization
 	var app = Backbone.Router.extend(routerConfig);
 	var myRouter = new app();
 	Backbone.history.start();
-
+//
+// Event Listeners
 	$('.btn').on('click', messSub);
 	$('#username').on('keyup', messSubPush);
 	$('#message').on('keyup', messSubPush);
@@ -94,10 +119,19 @@ function start() {
 
 	$('#signOut').click(logOut);
 
+	$('#leadDrop').click(dropdown);
+	$('.leaderDrop').on('mouseleave', dropdownClose);
+	$(".leaderDrop").click(dropdownClose);
+//
+// Variable Declarations
 	var $message = $("#message");
 	var user = '';
+	var open = false;
+//
+// Initial message retrieval
 	getMess();
-
+//
+// Log In/Out functions
 	function signIn () {
 		console.log('3');
 		if($('#loginBox').val() !== '') {
@@ -123,12 +157,15 @@ function start() {
 	}
 
 	function logOut() {
+		$('.drop').hide();
 		user = '';
 		$('#loginArea').show();
 		$('#signOut').hide();
 	}
-
+//
+// Message post functions
 	function messSub(e) {
+		$('.drop').hide();
 		if(user === '' || user === undefined) {
 			window.location.hash = '#login';
 		} else if($("#message").val() === '') {
@@ -168,7 +205,8 @@ function start() {
 				}
 			}
 	}
-
+//
+// Message get functions
 	function getMess() {
 		$.get(
 			'https://morning-reef-8611.herokuapp.com/trainers',
@@ -176,16 +214,42 @@ function start() {
 			'json'
 		);
 	}
-	setInterval(getMess, 500);
-
 	function onMessagesReceived(val) {
 		if(window.location.hash === '#1' || window.location.hash === '#2' || window.location.hash === '#3' || window.location.hash === '#4') {
 			$(window.location.hash).html('');
-			for (var i = val.length; i>0; --i) {
-				if(window.location.hash === ('#'+val[i-1].badge)) {
-					$(window.location.hash).append('<div>' + val[i-1].name + ': ' + val[i-1].message + '</div>')
+			for (var i = 0; i<val.length; i++) {
+				if(window.location.hash === ('#'+val[i].badge)) {
+					$(window.location.hash).append('<div>' + '<span class = "timestamp">' + timeFormat(val[i]) + '</span>' + '<span>' + val[i].name + ': ' + val[i].message + '</span>' + '</div>')
 				}
 			}
 		}
+	}
+	function timeFormat (time) {
+		var s = time.created_at;
+		s = s.slice(0, 16);
+		s = s.slice(0, 10) + " " + s.slice(11,16) + " ";
+		console.log(s);
+		return s + " ";
+	}
+	setInterval(getMess, 500);
+//
+//	Dropdown nav functions
+	function dropdown () {
+		if(open === false) {
+			$('.leaderDrop').show();
+			open = true;
+		} else {
+			dropdownClose();
+		}
+	}
+	function dropdownClose () {
+		console.log('???');
+		$('.leaderDrop').hide();
+		open = false;
+	}
+//
+// Counter functions
+	function UserCount() {
+		this.count = 0;
 	}
 }
