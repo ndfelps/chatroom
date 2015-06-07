@@ -74,7 +74,7 @@ function start() {
 			$('#username').hide();
 			$('.btn').hide();
 			$('.con').removeClass('active');
-			$('#actChat').show();
+			$('#actUsers').show();
 		},
 		nav6: function() {
 			$('.page').hide();
@@ -91,9 +91,9 @@ function start() {
 			$('#username').hide();
 			$('.btn').hide();
 			$('.con').removeClass('active');
-			$('#actUsers').show();
+			$('#actChat').show();
 		},
-		nav7: function() {
+		nav8: function() {
 			dropdownClose();
 			$('.page').hide();
 			$('#message').hide();
@@ -133,9 +133,7 @@ function start() {
 //
 // Log In/Out functions
 	function signIn () {
-		console.log('3');
 		if($('#loginBox').val() !== '') {
-			console.log('?');
 			user = $('#loginBox').val();
 			$('#loginBox').val('');
 			$('#loginArea').hide();
@@ -146,7 +144,6 @@ function start() {
 
 	function signInPush () {
 		if(event.keyCode === 13) {
-			console.log('g');
 			if($('#loginBox').val() !== '') {
 				user = $('#loginBox').val();
 				$('#loginBox').val('');
@@ -219,7 +216,8 @@ function start() {
 			$(window.location.hash).html('');
 			for (var i = 0; i<val.length; i++) {
 				if(window.location.hash === ('#'+val[i].badge)) {
-					$(window.location.hash).append('<div>' + '<span class = "timestamp">' + timeFormat(val[i]) + '</span>' + '<span>' + val[i].name + ': ' + val[i].message + '</span>' + '</div>')
+					$(window.location.hash).append('<div>' + '<span class = "timestamp">' + timeFormat(val[i]) + '</span>' + '<span class = "comment">' + val[i].name + ': ' + val[i].message + '</span>' + '</div>')
+					// $('.comment').emoticonize('animate');
 				}
 			}
 		}
@@ -228,10 +226,54 @@ function start() {
 		var s = time.created_at;
 		s = s.slice(0, 16);
 		s = s.slice(0, 10) + " " + s.slice(11,16) + " ";
-		console.log(s);
 		return s + " ";
 	}
 	setInterval(getMess, 500);
+//
+// Leaderboard get functions
+	function getUser () {
+		$.get(
+			'https://morning-reef-8611.herokuapp.com/trainers/leaderboard',
+			onUsersReceived,
+			'json'
+		);
+	}
+	function onUsersReceived (val) {
+		$('#chatLeaders').html('')
+		for(var i = 0; i<val.length; i++) {
+			$('#chatLeaders').append(i+1+'. ' + val[i] + '<br>');
+		}
+	}
+	function getCh () {
+		$.get(
+			'https://morning-reef-8611.herokuapp.com/trainers/leaderboard/boards',
+			onChReceived,
+			'json'
+		);
+	}
+	function onChReceived (val) {
+		$('#roomLeaders').html('')
+		for(var i = 0; i<val.length; i++) {
+			$('#roomLeaders').append(i+1+'. Chat Room ' + val[i] + '<br>');
+		}
+	}
+	function getRec () {
+		$.get(
+			'https://morning-reef-8611.herokuapp.com/trainers/leaderboard/users',
+			onRecReceived,
+			'json'
+		);
+	}
+	function onRecReceived (val) {
+		$('#mostRecent').html('')
+		for(var i = 0; i<val.length; i++) {
+			$('#mostRecent').append(val[i] + '<br>');
+		}
+	}
+	setInterval(getUser, 500);
+	setInterval(getCh, 500);
+	setInterval(getRec, 500);
+
 //
 //	Dropdown nav functions
 	function dropdown () {
@@ -243,13 +285,7 @@ function start() {
 		}
 	}
 	function dropdownClose () {
-		console.log('???');
 		$('.leaderDrop').hide();
 		open = false;
-	}
-//
-// Counter functions
-	function UserCount() {
-		this.count = 0;
 	}
 }
