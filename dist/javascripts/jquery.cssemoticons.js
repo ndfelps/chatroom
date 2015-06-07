@@ -9,6 +9,8 @@
  *
  * Date: Sun Oct 22 1:00:00 2010 -0500
  */
+
+ // setInterval(500, $('.comment').emoticonize());
 (function($) {
   $.fn.emoticonize = function(options) {
 
